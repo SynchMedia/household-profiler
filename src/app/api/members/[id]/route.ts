@@ -3,6 +3,34 @@ import { db } from '@/lib/db';
 import { householdMembers } from '@/lib/schema';
 import { eq } from 'drizzle-orm';
 
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const id = parseInt(params.id);
+    
+    if (isNaN(id)) {
+      return NextResponse.json({ error: 'Invalid ID format' }, { status: 400 });
+    }
+
+    const member = await db
+      .select()
+      .from(householdMembers)
+      .where(eq(householdMembers.id, id))
+      .limit(1);
+
+    if (!member || member.length === 0) {
+      return NextResponse.json({ error: 'Member not found' }, { status: 404 });
+    }
+
+    return NextResponse.json(member[0]);
+  } catch (error: unknown) {
+    console.error('Failed to fetch member:', error);
+    return NextResponse.json({ error: 'Failed to fetch member' }, { status: 500 });
+  }
+}
+
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -50,13 +78,16 @@ export async function PUT(
     }
 
     return NextResponse.json(updatedMember);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Failed to update member - Full error:', error);
-    console.error('Error message:', error.message);
-    console.error('Error stack:', error.stack);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Error message:', errorMessage);
+    if (error instanceof Error) {
+      console.error('Error stack:', error.stack);
+    }
     return NextResponse.json({ 
       error: 'Failed to update member',
-      details: error.message 
+      details: errorMessage 
     }, { status: 500 });
   }
 }
@@ -78,7 +109,7 @@ export async function DELETE(
     }
 
     return NextResponse.json({ message: 'Member deleted successfully' });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Failed to delete member:', error);
     return NextResponse.json({ error: 'Failed to delete member' }, { status: 500 });
   }
