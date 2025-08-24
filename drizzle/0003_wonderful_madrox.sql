@@ -1,0 +1,1 @@
+ALTER TABLE `household_members` DROP COLUMN `goals`;

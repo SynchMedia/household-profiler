@@ -1,0 +1,62 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1755982499232,
+      "tag": "0000_fluffy_metal_master",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1755982520497,
+      "tag": "0001_tiny_gateway",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1755983191113,
+      "tag": "0002_sparkling_punisher",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1755986053000,
+      "tag": "0003_wonderful_madrox",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1755986893808,
+      "tag": "0004_classy_obadiah_stane",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1755988400596,
+      "tag": "0005_complex_cassandra_nova",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1755989339783,
+      "tag": "0006_milky_malcolm_colcord",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1755992993224,
+      "tag": "0007_acoustic_masque",
+      "breakpoints": true
+    }
+  ]
+}
